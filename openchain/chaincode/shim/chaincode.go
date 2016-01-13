@@ -188,9 +188,19 @@ func (stub *ChaincodeStub) GetState(key string) ([]byte, error) {
 	return handler.handleGetState(key, stub.UUID)
 }
 
+// Testing to see if state can be preserved through multiple chaincodes
+func (stub *ChaincodeStub) GetStateUUID(key string, uuid string) ([]byte, error) {
+	return handler.handleGetState(key, uuid)
+}
+
 // PutState function can be invoked by a chaincode to put state into the ledger.
 func (stub *ChaincodeStub) PutState(key string, value []byte) error {
 	return handler.handlePutState(key, value, stub.UUID)
+}
+
+// Testing to see if state can be preserved through multiple chaincodes
+func (stub *ChaincodeStub) PutStateUUID(key string, value []byte, uuid string) error {
+	return handler.handlePutState(key, value, uuid)
 }
 
 // DelState function can be invoked by a chaincode to del state from the ledger.
@@ -206,4 +216,8 @@ func (stub *ChaincodeStub) InvokeChaincode(chaincodeName string, function string
 // QueryChaincode function can be invoked by a chaincode to query another chaincode.
 func (stub *ChaincodeStub) QueryChaincode(chaincodeName string, function string, args []string) ([]byte, error) {
 	return handler.handleQueryChaincode(chaincodeName, function, args, stub.UUID)
+}
+
+func (stub *ChaincodeStub) GetUUID() (string) {
+	retun stub.UUID
 }
