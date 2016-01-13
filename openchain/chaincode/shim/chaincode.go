@@ -219,5 +219,5 @@ func (stub *ChaincodeStub) QueryChaincode(chaincodeName string, function string,
 }
 
 func (stub *ChaincodeStub) GetUUID() (string) {
-	retun stub.UUID
+	return stub.UUID
 }
